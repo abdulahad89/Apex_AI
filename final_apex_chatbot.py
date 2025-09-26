@@ -5,8 +5,6 @@ import google.generativeai as genai
 import chromadb
 import numpy as np
 from typing import List, Dict
-import json
-import uuid
 
 # Load environment variables
 load_dotenv()
@@ -131,100 +129,6 @@ APEX_COLLEGE_DATA = {
     - Minimum 45% marks in 10+2 (40% for reserved category students)
     - Valid scores in JEE Main/CUET/State CET or APEX entrance examination
     - Age limit: Should not be more than 23 years as on admission date
-
-    COURSE FEATURES:
-    - Industry-aligned curriculum updated regularly
-    - Hands-on laboratory training with latest equipment
-    - Project-based learning approach
-    - Industrial training and internships in 6th/7th semester
-    - Guest lectures by industry experts
-    - Coding competitions and technical events
-    - Research project opportunities
-    - International certification programs
-    """,
-    
-    "other_programs": """
-    BEYOND B.TECH: DIVERSE ACADEMIC PROGRAMS
-
-    1. MASTER OF BUSINESS ADMINISTRATION (MBA)
-    Duration: 2 years (4 semesters)
-    Intake: 120 students per year
-    Specializations:
-    - Marketing Management
-    - Human Resource Management
-    - Finance Management
-    - Operations Management
-    - Information Technology Management
-    - International Business
-
-    Eligibility:
-    - Bachelor's degree in any discipline with minimum 50% marks
-    - Valid CAT/MAT/XAT/CMAT/KMAT/APEX management entrance test scores
-    - Minimum 2 years work experience preferred but not mandatory
-
-    2. BACHELOR OF BUSINESS ADMINISTRATION (BBA)
-    Duration: 3 years (6 semesters)
-    Intake: 60 students per year
-    Focus Areas:
-    - Business fundamentals and management principles
-    - Marketing and sales management
-    - Financial accounting and management
-    - Organizational behavior and HR
-    - Business communication and entrepreneurship
-
-    3. BACHELOR OF COMPUTER APPLICATIONS (BCA)
-    Duration: 3 years (6 semesters)
-    Intake: 60 students per year
-    Curriculum:
-    - Programming languages and software development
-    - Database management and web technologies
-    - Computer networks and system administration
-    - Mobile application development
-    - Project management and software testing
-
-    4. BACHELOR OF COMMERCE (B.COM HONORS)
-    Duration: 3 years (6 semesters)
-    Intake: 60 students per year
-    Specializations:
-    - Accounting and Finance
-    - Banking and Insurance
-    - International Business
-    - E-commerce and Digital Marketing
-
-    5. BACHELOR OF EDUCATION (B.ED)
-    Duration: 2 years (4 semesters)
-    Intake: 50 students per year
-    Teaching Methods:
-    - Mathematics and Science teaching methodology
-    - English and Social Science pedagogy
-    - Educational psychology and assessment
-    - Classroom management and technology integration
-
-    6. POLYTECHNIC COURSES
-    Duration: 3 years (6 semesters)
-    Programs Available:
-    - Diploma in Computer Science Engineering
-    - Diploma in Electronics & Communication Engineering
-    - Diploma in Mechanical Engineering
-    - Diploma in Civil Engineering
-
-    7. PHARMACY PROGRAMS
-    Duration: D.Pharm (2 years), B.Pharm (4 years)
-    Intake: D.Pharm (60), B.Pharm (60)
-    Focus: Pharmaceutical sciences, drug development, clinical pharmacy, hospital pharmacy management
-
-    8. BACHELOR OF SCIENCE PROGRAMS
-    Available Programs:
-    - B.Sc Computer Science (3 years)
-    - B.Sc Information Technology (3 years)
-    - B.Sc Mathematics (3 years)
-    - B.Sc Physics (3 years)
-    - B.Sc Chemistry (3 years)
-
-    ADMISSION REQUIREMENTS VARY BY PROGRAM:
-    - UG Programs: 10+2 with relevant subjects and minimum percentage
-    - PG Programs: Bachelor's degree with required percentage and entrance test scores
-    - Professional Programs: Specific eligibility as per regulatory body requirements
     """,
     
     "admission_process": """
@@ -269,101 +173,33 @@ APEX_COLLEGE_DATA = {
     - Hostel accommodation booking (if required)
     - Issue of admission confirmation letter
 
-    REQUIRED DOCUMENTS CHECKLIST:
-
-    FOR ALL APPLICANTS:
-    - 10th standard mark sheet and certificate
-    - 12th standard mark sheet and certificate
+    REQUIRED DOCUMENTS:
+    - 10th and 12th standard mark sheets and certificates
     - Transfer certificate from last attended institution
     - Character certificate from school/college
     - Migration certificate (for students from other states)
-    - Passport size photographs (6 copies)
+    - Category certificate (if applicable)
+    - Income certificate (for fee concession)
+    - Passport size photographs
     - Aadhar card photocopy
-    - Income certificate from competent authority
-
-    FOR CATEGORY STUDENTS:
-    - Caste certificate (SC/ST/OBC) issued by competent authority
-    - EWS certificate (for economically weaker section)
-    - Non-creamy layer certificate (for OBC candidates)
-
-    FOR FEE CONCESSION:
-    - Income certificate with annual family income details
-    - Domicile certificate (if applicable)
-    - Bank account details for scholarship disbursement
-
-    ENTRANCE EXAMINATIONS ACCEPTED:
-    - JEE Main (for B.Tech programs)
-    - CUET (Common University Entrance Test)
-    - State CET (Conducted by state government)
-    - APEX Merit Test (Institution's own entrance examination)
-    - CAT/MAT/XAT/CMAT (for MBA program)
-
-    APPLICATION DEADLINES AND IMPORTANT DATES:
-    - Online applications typically open: May 1st
-    - Last date for B.Tech applications: June 30th
-    - Last date for other UG programs: July 15th
-    - Last date for PG programs: July 31st
-    - Merit list publication: Within 7 days of application deadline
-    - Counseling rounds: July-August
-    - Final admission confirmation: By August 31st
-    - Classes commencement: First week of September
-
-    APPLICATION FEE STRUCTURE:
-    - General/OBC candidates: ₹1,500
-    - SC/ST candidates: ₹750
-    - EWS candidates: ₹750
-    - Late application fee: Additional ₹500
 
     CONTACT FOR ADMISSION QUERIES:
-    Admission Helpdesk: +91-7351408009
+    Phone: +91-7351408009
     Email: admissions@apex.ac.in
-    WhatsApp Support: +91-7351408009
     Office Hours: 9:00 AM to 6:00 PM (Monday to Saturday)
-    Address: APEX Group of Institutions, NH-44, Sector-125, Noida, UP-201303
     """,
     
     "placement_cell": """
     TRAINING & PLACEMENT CELL - CAREER EXCELLENCE
 
-    The Training & Placement Cell at APEX Group of Institutions is a dedicated department committed to bridging the gap between academia and industry, ensuring excellent career opportunities for all students.
+    The Training & Placement Cell at APEX Group of Institutions is dedicated to bridging the gap between academia and industry, ensuring excellent career opportunities for all students.
 
-    PLACEMENT ACHIEVEMENTS AND STATISTICS:
-
-    OVERALL PLACEMENT RECORD:
+    PLACEMENT ACHIEVEMENTS:
     - Overall Placement Rate: 95.8% (Academic Year 2023-24)
-    - Number of Students Placed: 1,247 out of 1,301 eligible students
-    - Highest Package Offered: ₹28 LPA (International offer)
-    - Highest Domestic Package: ₹18 LPA
+    - Highest Package: ₹28 LPA (International offer)
     - Average Package Range: ₹4.2 - ₹8.5 LPA
-    - Median Package: ₹6.2 LPA
     - Companies Participated: 287 companies
-    - Total Job Offers: 1,456 (multiple offers per student)
-
-    PROGRAM-WISE PLACEMENT STATISTICS:
-
-    B.Tech Computer Science Engineering:
-    - Placement Rate: 98.5%
-    - Average Package: ₹7.8 LPA
-    - Highest Package: ₹28 LPA
-    - Top Recruiters: Microsoft, Amazon, Google, IBM, TCS Innovation Labs
-
-    B.Tech AI & Machine Learning:
-    - Placement Rate: 97.2%
-    - Average Package: ₹8.2 LPA
-    - Highest Package: ₹22 LPA
-    - Top Recruiters: NVIDIA, Intel, Qualcomm, Flipkart, Paytm
-
-    B.Tech Data Science:
-    - Placement Rate: 96.8%
-    - Average Package: ₹7.5 LPA
-    - Highest Package: ₹18 LPA
-    - Top Recruiters: Analytics Quotient, Fractal Analytics, Mu Sigma
-
-    MBA Programs:
-    - Placement Rate: 94.5%
-    - Average Package: ₹9.2 LPA
-    - Highest Package: ₹15 LPA
-    - Top Recruiters: Deloitte, KPMG, Accenture, Wipro, HCL
+    - Total Students Placed: 1,247 out of 1,301 eligible
 
     TOP RECRUITING COMPANIES:
 
@@ -379,24 +215,13 @@ APEX_COLLEGE_DATA = {
     - HCL Technologies
     - Tech Mahindra
     - L&T Infotech (LTI)
-    - Mindtree (now part of L&T)
-    - Capgemini India
+    - Mindtree, Capgemini India
 
     PRODUCT COMPANIES:
     - Flipkart, Amazon India
     - Paytm, PhonePe, Razorpay
     - Zomato, Swiggy, Ola
     - MakeMyTrip, BookMyShow
-    - Freshworks, Zoho Corporation
-
-    CORE ENGINEERING COMPANIES:
-    - Larsen & Toubro (L&T)
-    - Bajaj Auto Limited
-    - Mahindra Group
-    - Tata Motors
-    - Bosch India
-    - Siemens Limited
-    - ABB India
 
     CONSULTING & ANALYTICS:
     - McKinsey & Company
@@ -406,501 +231,140 @@ APEX_COLLEGE_DATA = {
     - Ernst & Young (EY)
     - KPMG Global Services
 
-    BANKING & FINANCIAL SERVICES:
-    - ICICI Bank, HDFC Bank
-    - Axis Bank, Kotak Mahindra Bank
-    - Yes Bank, IndusInd Bank
-    - Goldman Sachs, Morgan Stanley
-    - JP Morgan Chase, Deutsche Bank
-
     TRAINING PROGRAMS PROVIDED:
-
-    PRE-PLACEMENT TRAINING:
-    - Technical interview preparation and mock interviews
-    - Aptitude and reasoning test preparation
-    - Communication skills and personality development
-    - Group discussion training and leadership skills
-    - Resume building and LinkedIn profile optimization
-    - Industry-specific skill development workshops
-
-    SOFT SKILLS DEVELOPMENT:
-    - Professional communication and presentation skills
-    - Team building and collaborative working
-    - Time management and productivity enhancement
-    - Stress management and emotional intelligence
-    - Professional etiquette and workplace behavior
-
-    TECHNICAL SKILL ENHANCEMENT:
-    - Programming and coding bootcamps
-    - Data structures and algorithms intensive training
-    - System design and architecture workshops
-    - Domain-specific certification courses
-    - Latest technology trends and tools training
-
-    INDUSTRY INTERFACE PROGRAMS:
-    - Regular guest lectures by industry experts
-    - Industrial visits to leading companies
-    - Live project assignments with industry partners
-    - Internship facilitation with top companies
-    - Mentorship programs with alumni and industry professionals
-
-    ENTREPRENEURSHIP SUPPORT:
-    - Startup incubation and funding guidance
-    - Business plan development support
-    - Networking with investors and venture capitalists
-    - Legal and regulatory compliance assistance
-    - Market research and customer validation support
-
-    PLACEMENT PROCESS:
-
-    COMPANY REGISTRATION:
-    - Companies register through placement portal
-    - Job description and requirements submission
-    - Salary and benefits package disclosure
-    - Interview process and timeline planning
-
-    STUDENT PREPARATION:
-    - Eligibility criteria communication
-    - Resume screening and shortlisting
-    - Pre-placement presentation (PPT) by companies
-    - Student registration for interested companies
-
-    SELECTION PROCESS:
-    - Online assessments and coding tests
-    - Technical interviews (multiple rounds)
-    - HR and behavioral interviews
-    - Final selection and offer letter distribution
-
-    PLACEMENT SUPPORT SERVICES:
-    - 24/7 placement portal access for students
-    - Regular placement updates and notifications
-    - Individual career counseling sessions
-    - Placement preparation workshops and seminars
-    - Alumni network support and guidance
-    - Post-placement support and feedback collection
+    - Technical interview preparation
+    - Communication skills development
+    - Resume building workshops
+    - Mock interviews and group discussions
+    - Industry-specific certification courses
+    - Soft skills and personality development
 
     CONTACT PLACEMENT CELL:
-    Director, Training & Placement: Dr. Rajesh Kumar
-    Phone: +91-7351408009 (Ext: 234)
     Email: placements@apex.ac.in
-    WhatsApp: +91-9876543210
-    Office: Training & Placement Block, 2nd Floor, APEX Campus
+    Phone: +91-7351408009 (Ext: 234)
     """,
     
     "campus_facilities": """
     CAMPUS INFRASTRUCTURE & WORLD-CLASS FACILITIES
 
-    APEX Group of Institutions is spread across a sprawling 50-acre campus with state-of-the-art infrastructure designed to provide an optimal learning and living environment for students.
+    APEX Group of Institutions is spread across a sprawling 50-acre campus with state-of-the-art infrastructure designed to provide an optimal learning and living environment.
 
     ACADEMIC INFRASTRUCTURE:
 
     CLASSROOM FACILITIES:
     - 150+ modern, well-ventilated classrooms
-    - Air-conditioned lecture halls with 50-150 seating capacity
-    - Smart boards and LED projectors in every classroom
+    - Air-conditioned lecture halls with smart boards
     - High-speed Wi-Fi connectivity throughout campus
-    - Ergonomic furniture for comfortable learning
     - Audio-visual equipment for multimedia presentations
-    - Accessibility features for differently-abled students
 
     ADVANCED LABORATORIES:
-
-    Computer Science & IT Labs:
-    - 25 computer labs with 40-50 systems each
-    - Latest configuration computers with high-end processors
-    - Licensed software: Microsoft Visual Studio, Oracle, SAP, MATLAB
-    - Dedicated labs for AI/ML, Data Science, and Cloud Computing
+    - 25 computer labs with latest configurations
+    - Dedicated AI/ML and Data Science labs
     - Cybersecurity lab with ethical hacking tools
-    - Mobile app development lab with Android/iOS environments
     - Network lab with Cisco certified equipment
+    - Electronics and robotics labs
 
-    Engineering Labs:
-    - Electronics and Communication lab with modern equipment
-    - Microprocessor and microcontroller lab
-    - Digital signal processing lab
-    - VLSI design lab with Xilinx and Altera tools
-    - Embedded systems development lab
-    - Robotics and automation lab
-    - IoT (Internet of Things) development center
-
-    Science Laboratories:
-    - Physics lab with modern experimental setups
-    - Chemistry lab with fume hoods and safety equipment
-    - Mathematics lab with statistical software
-    - Research lab for final year projects
-    - Innovation lab for prototype development
-
-    CENTRAL LIBRARY - KNOWLEDGE HUB:
-    - Built-up area: 15,000 sq. ft. across three floors
-    - Collection: 75,000+ books, 500+ international journals
-    - Digital library with access to IEEE, ACM, Springer databases
-    - E-book collection: 25,000+ titles
-    - Separate reading halls for UG and PG students
-    - Group study rooms for collaborative learning
+    CENTRAL LIBRARY:
+    - 75,000+ books and 500+ international journals
+    - Digital library with IEEE, ACM, Springer databases
     - 24x7 access during examination periods
-    - Book bank facility for economically weaker students
-    - Photocopying and printing facilities
-    - Library automation system with barcode scanning
+    - Group study rooms for collaborative learning
 
-    ACCOMMODATION & RESIDENTIAL FACILITIES:
+    ACCOMMODATION FACILITIES:
 
     STUDENT HOSTELS:
-    Boys Hostels:
-    - 4 separate hostel blocks accommodating 2,000 students
-    - Single, double, and triple occupancy rooms available
-    - Attached bathrooms with 24x7 water supply
-    - Individual study tables and storage facilities
-    - Common rooms with TV, indoor games, and newspapers
+    - Separate hostels for boys and girls
+    - Single, double, and triple occupancy rooms
+    - 24x7 security with biometric access
     - High-speed internet in all rooms
-    - Laundry service and ironing facilities
+    - Common rooms and recreation facilities
 
-    Girls Hostels:
-    - 3 separate hostel blocks accommodating 1,200 students
-    - Enhanced security with biometric access control
-    - Lady wardens available 24x7
-    - Beauty salon and medical room facilities
-    - Separate visitor areas with CCTV monitoring
-    - Recreation room with entertainment facilities
+    DINING FACILITIES:
+    - Central mess serving 3,000+ students
+    - Multiple cafeterias across campus
+    - Hygienic kitchen with modern equipment
+    - Varied menu including regional cuisines
 
-    DINING & FOOD SERVICES:
-    Central Mess Facility:
-    - Capacity to serve 3,000+ students simultaneously
-    - Hygienic kitchen with modern cooking equipment
-    - Nutritious meals prepared by experienced chefs
-    - Menu includes North Indian, South Indian, and Continental cuisine
-    - Special diet arrangements for medical conditions
-    - Quality control through regular health inspections
-
-    Multiple Cafeterias:
-    - 5 cafeterias across campus serving snacks and beverages
-    - Food court with 15+ food stalls offering variety
-    - 24x7 cafeteria near hostels for emergency needs
-    - Affordable pricing with student-friendly rates
-    - Cashless payment options available
-
-    SPORTS & RECREATION COMPLEX:
-
-    Outdoor Sports Facilities:
-    - Cricket ground with international standard pitch
-    - Football field with natural grass and floodlights
-    - Basketball courts (4) with international dimensions
-    - Volleyball courts (6) with proper net systems
-    - Tennis courts (2) with synthetic surface
-    - Badminton courts (8) in covered area
-    - Athletic track (400m) around the main ground
-    - Swimming pool (Olympic size) with changing rooms
-
-    Indoor Sports Complex:
-    - Table tennis hall with 10 tables
-    - Carrom and chess facilities
-    - Billiards and snooker tables
-    - Indoor badminton courts (4)
+    SPORTS & RECREATION:
+    - Cricket ground with international standard
+    - Basketball, volleyball, and tennis courts
+    - Swimming pool (Olympic size)
     - Gymnasium with modern equipment
-    - Separate fitness center for girls
-    - Yoga and meditation hall
-    - Aerobics and dance studio
+    - Indoor games and yoga facilities
 
-    HEALTH & WELLNESS FACILITIES:
-
-    Medical Center:
-    - 24x7 medical facility with qualified doctors
-    - Separate male and female medical officers
+    HEALTH & WELLNESS:
+    - 24x7 medical center with qualified doctors
     - Emergency ambulance service
-    - Pharmacy with essential medicines
-    - Regular health checkup programs
+    - Health checkup programs
     - Mental health counseling services
-    - First aid training for students and staff
 
-    Healthcare Partnerships:
-    - Tie-ups with nearby multi-specialty hospitals
-    - Health insurance coverage for all students
-    - Specialist consultation arrangements
-    - Emergency medical evacuation facilities
-
-    TRANSPORTATION SERVICES:
-    - 35 buses covering 50+ routes across the city
-    - GPS-enabled buses for route tracking
-    - Female attendants in buses for girls' safety
-    - Maintenance workshop for bus servicing
-    - Real-time bus tracking mobile app
-    - Pick-up points at major locations in the city
-
-    ADDITIONAL CAMPUS FACILITIES:
-
-    Banking & Financial Services:
-    - On-campus branch of nationalized bank
-    - 3 ATM machines at different locations
-    - Mobile banking and digital payment facilities
-    - Educational loan processing assistance
-
-    Shopping & Services:
-    - Campus store for stationery and daily needs
-    - Photocopy and printing centers (5 locations)
-    - Courier and postal services
-    - Mobile phone and laptop repair center
-    - Salon and barber shop services
+    TRANSPORTATION:
+    - 35 buses covering 50+ routes
+    - GPS-enabled buses for safety
+    - Pick-up points at major city locations
 
     TECHNOLOGY INFRASTRUCTURE:
-    - Campus-wide Wi-Fi with 1 Gbps leased line
-    - 24x7 power supply with diesel generator backup
+    - Campus-wide Wi-Fi with 1 Gbps connectivity
+    - 24x7 power supply with backup
     - Solar power plant generating 500 KW
-    - Water treatment plant for clean drinking water
-    - Sewage treatment plant for environment protection
-    - CCTV surveillance across entire campus
-    - Biometric attendance system for students and staff
-    - Smart card system for library and mess access
-
-    AUDITORIUM & CONFERENCE FACILITIES:
-    - Main auditorium with 1,500 seating capacity
-    - AC with modern sound and lighting systems
-    - Seminar halls (5) with 100-200 capacity each
-    - Conference rooms for meetings and workshops
-    - Video conferencing facilities for virtual events
-    - Stage and backstage facilities for cultural programs
-
-    ENVIRONMENTAL INITIATIVES:
-    - Green campus with 5,000+ trees planted
-    - Rainwater harvesting system
-    - Waste segregation and recycling programs
-    - Solar street lighting across campus
-    - Organic waste composting unit
-    - Plastic-free campus initiative
-    - Regular environmental awareness programs
-
-    SAFETY & SECURITY:
-    - 24x7 security personnel at all entry/exit points
-    - CCTV monitoring of entire campus
-    - Emergency response system with panic buttons
-    - Fire safety equipment and regular drills
-    - Women's safety committee and measures
-    - Visitor management system
-    - Night patrol services in hostel areas
+    - CCTV surveillance across campus
     """,
     
     "fee_structure": """
-    FEE STRUCTURE & FINANCIAL ASSISTANCE - COMPREHENSIVE GUIDE
+    FEE STRUCTURE & FINANCIAL ASSISTANCE
 
-    APEX Group of Institutions maintains a transparent and student-friendly fee structure with various payment options and financial assistance programs to ensure quality education is accessible to deserving students.
+    APEX Group of Institutions maintains transparent and affordable fee structure with various payment options and financial assistance programs.
 
-    DETAILED FEE STRUCTURE (ACADEMIC YEAR 2024-25):
-
-    B.TECH PROGRAMS - ANNUAL FEE BREAKDOWN:
+    B.TECH PROGRAMS - ANNUAL FEE:
 
     Computer Science Engineering:
-    - Tuition Fee: ₹1,25,000
-    - Development Fee: ₹20,000
-    - Laboratory Fee: ₹15,000
-    - Library Fee: ₹8,000
-    - Examination Fee: ₹12,000
-    - Registration Fee: ₹5,000 (One time)
-    - Total Annual Fee: ₹1,85,000
-    - 4-Year Total: ₹7,35,000 (excluding registration fee from 2nd year)
+    - Annual Fee: ₹1,85,000
+    - 4-Year Total: ₹7,35,000
 
     AI & Machine Learning:
-    - Tuition Fee: ₹1,35,000
-    - Development Fee: ₹20,000
-    - Laboratory Fee: ₹18,000
-    - Library Fee: ₹8,000
-    - Examination Fee: ₹12,000
-    - Registration Fee: ₹5,000 (One time)
-    - Total Annual Fee: ₹1,98,000
+    - Annual Fee: ₹1,98,000
     - 4-Year Total: ₹7,87,000
 
     Data Science:
-    - Tuition Fee: ₹1,30,000
-    - Development Fee: ₹20,000
-    - Laboratory Fee: ₹16,000
-    - Library Fee: ₹8,000
-    - Examination Fee: ₹12,000
-    - Registration Fee: ₹5,000 (One time)
-    - Total Annual Fee: ₹1,91,000
+    - Annual Fee: ₹1,91,000
     - 4-Year Total: ₹7,59,000
 
-    Cloud Technology & Information Security:
-    - Tuition Fee: ₹1,30,000
-    - Development Fee: ₹20,000
-    - Laboratory Fee: ₹17,000
-    - Library Fee: ₹8,000
-    - Examination Fee: ₹12,000
-    - Registration Fee: ₹5,000 (One time)
-    - Total Annual Fee: ₹1,92,000
+    Cloud Technology & Security:
+    - Annual Fee: ₹1,92,000
     - 4-Year Total: ₹7,63,000
 
-    MBA PROGRAM - ANNUAL FEE:
-    - Tuition Fee: ₹1,50,000
-    - Case Study Material Fee: ₹15,000
-    - Industry Interface Fee: ₹10,000
-    - Library & Digital Resources: ₹10,000
-    - Examination Fee: ₹10,000
-    - Registration Fee: ₹5,000 (One time)
-    - Total Annual Fee: ₹2,00,000
-    - 2-Year Total: ₹3,95,000
+    OTHER PROGRAMS:
+    - MBA: ₹2,00,000 per year (2 years)
+    - BBA: ₹85,000 per year (3 years)
+    - BCA: ₹95,000 per year (3 years)
+    - B.Com (Hons): ₹75,000 per year (3 years)
 
-    OTHER UNDERGRADUATE PROGRAMS:
+    ADDITIONAL COSTS (Optional):
+    - Hostel: ₹65,000-₹1,05,000 per year
+    - Mess: ₹45,000-₹55,000 per year
+    - Transportation: ₹18,000-₹40,000 per year
 
-    BBA (Bachelor of Business Administration):
-    - Annual Fee: ₹85,000
-    - 3-Year Total: ₹2,50,000
+    SCHOLARSHIPS:
 
-    BCA (Bachelor of Computer Applications):
-    - Annual Fee: ₹95,000
-    - 3-Year Total: ₹2,80,000
+    Merit-Based Scholarships:
+    - Top rankers in JEE/CUET: Up to 100% fee waiver
+    - Academic performance: Up to 50% fee waiver
+    - Sports excellence: Up to 75% fee waiver
 
-    B.Com (Hons):
-    - Annual Fee: ₹75,000
-    - 3-Year Total: ₹2,20,000
+    Need-Based Financial Aid:
+    - Income-based fee concessions up to 75%
+    - Government scholarships for SC/ST/OBC
+    - Education loan assistance with partner banks
 
-    DIPLOMA PROGRAMS (Polytechnic):
-    - Computer Science Engineering: ₹65,000 per year
-    - Electronics & Communication: ₹60,000 per year
-    - Mechanical Engineering: ₹60,000 per year
-    - Civil Engineering: ₹55,000 per year
-
-    PHARMACY PROGRAMS:
-    - D.Pharm (2 years): ₹70,000 per year
-    - B.Pharm (4 years): ₹1,10,000 per year
-
-    ADDITIONAL COSTS (OPTIONAL BUT RECOMMENDED):
-
-    HOSTEL ACCOMMODATION:
-    Boys Hostel:
-    - Single Occupancy: ₹95,000 per year
-    - Double Occupancy: ₹75,000 per year
-    - Triple Occupancy: ₹65,000 per year
-
-    Girls Hostel:
-    - Single Occupancy: ₹1,05,000 per year
-    - Double Occupancy: ₹85,000 per year
-    - Triple Occupancy: ₹75,000 per year
-
-    MESS CHARGES:
-    - Vegetarian Meals: ₹45,000 per year
-    - Non-Vegetarian Meals: ₹55,000 per year
-    - Special Diet (Jain/Vegan): ₹48,000 per year
-
-    TRANSPORTATION:
-    - Within 15 km radius: ₹18,000 per year
-    - 15-25 km radius: ₹25,000 per year
-    - 25-35 km radius: ₹32,000 per year
-    - Beyond 35 km: ₹40,000 per year
-
-    OTHER EXPENSES:
-    - Study Materials & Books: ₹12,000-₹15,000 per year
-    - Laptop (Recommended): ₹45,000-₹80,000
-    - Industry Certification Courses: ₹10,000-₹25,000
-    - Cultural and Sports Activities: ₹5,000 per year
-
-    PAYMENT OPTIONS & FACILITIES:
-
-    ANNUAL PAYMENT SCHEME:
-    - 5% discount on total annual fees if paid in one installment
-    - Payment deadline: Within 15 days of admission confirmation
-    - Online payment gateway with multiple banking options
-    - Demand draft in favor of "APEX Group of Institutions"
-
-    SEMESTER-WISE PAYMENT:
-    - Fees can be paid in two equal installments per year
-    - First installment: Before start of odd semester
-    - Second installment: Before start of even semester
-    - No additional charges for semester-wise payment
-
-    MONTHLY INSTALLMENT PLAN:
-    - Available for families with annual income below ₹5 lakhs
-    - Fees can be paid in 10 monthly installments
-    - Small processing fee of ₹2,000 per year
-    - Direct debit facility available
-    - Post-dated cheques accepted
-
-    SCHOLARSHIP PROGRAMS & FINANCIAL ASSISTANCE:
-
-    MERIT-BASED SCHOLARSHIPS:
-
-    APEX Excellence Awards:
-    - Rank 1-10 in JEE Main/CUET: 100% tuition fee waiver
-    - Rank 11-50: 75% tuition fee waiver
-    - Rank 51-100: 50% tuition fee waiver
-    - Rank 101-500: 25% tuition fee waiver
-    - State topper in 12th standard: 100% fee waiver
-
-    Academic Performance Scholarships:
-    - CGPA 9.5+ students: ₹25,000 cash award + 50% next year fee waiver
-    - CGPA 9.0-9.49: ₹15,000 cash award + 25% next year fee waiver
-    - CGPA 8.5-8.99: ₹10,000 cash award + 10% next year fee waiver
-
-    NEED-BASED FINANCIAL AID:
-
-    Income-Based Fee Concessions:
-    - Family income below ₹2 lakhs: 75% fee concession
-    - Family income ₹2-4 lakhs: 50% fee concession
-    - Family income ₹4-6 lakhs: 25% fee concession
-    - Single parent families: Additional 10% concession
-
-    GOVERNMENT SCHOLARSHIPS:
-    - SC/ST students: As per government norms (₹20,000-₹50,000)
-    - OBC students: Non-creamy layer benefit
-    - EWS category: 10% reservation with fee benefits
-    - Minority community scholarships available
-    - State government scholarship schemes applicable
-
-    SPECIAL CATEGORY SCHOLARSHIPS:
-
-    Sports Excellence Scholarships:
-    - National level players: 100% fee waiver + monthly stipend
-    - State level players: 75% fee waiver
-    - District level players: 50% fee waiver
-    - University level players: 25% fee waiver
-
-    Cultural Talent Scholarships:
-    - National award winners: ₹50,000 annual scholarship
-    - State level winners: ₹30,000 annual scholarship
-    - District level winners: ₹20,000 annual scholarship
-
-    Other Special Scholarships:
-    - Girl child education incentive: 10% fee concession for girls
-    - Employee ward benefit: 50% concession for staff children
-    - Alumni referral benefit: ₹10,000 cash back
-    - Sibling discount: 15% for second child, 25% for third child
-    - Defense personnel ward: 20% fee concession
-
-    EDUCATION LOAN ASSISTANCE:
-    - Partnership with 15+ nationalized and private banks
-    - Loan processing assistance through dedicated counselor
-    - Special tie-up with SBI, HDFC, ICICI for quick processing
-    - Up to ₹15 lakhs education loan without collateral
-    - Competitive interest rates starting from 8.5%
-    - Moratorium period until completion of course
-    - EMI planning and repayment guidance
-
-    FEE REFUND POLICY:
-
-    Refund Schedule:
-    - Withdrawal before classes start: 90% refund
-    - Withdrawal within first 15 days: 80% refund
-    - Withdrawal within first month: 70% refund
-    - Withdrawal within first quarter: 50% refund
-    - Withdrawal after first semester: No refund
-    - Processing charges: ₹10,000 in all cases
-    - Caution deposit: Fully refundable after course completion
-
-    LATE PAYMENT PENALTIES:
-    - Late payment fine: ₹100 per day after due date
-    - Maximum late fee: ₹5,000 per semester
-    - No examination permission without fee clearance
-    - Admission cancellation after 60 days of non-payment
-
-    FEE COLLECTION CENTERS:
-    - Online payment portal: Available 24x7
-    - Campus accounts office: 9 AM to 5 PM (Mon-Sat)
-    - Authorized collection centers in major cities
-    - Bank branches with direct credit facility
-    - Mobile payment apps: PhonePe, GooglePay, Paytm accepted
+    PAYMENT OPTIONS:
+    - Annual payment: 5% discount
+    - Semester-wise payment available
+    - Monthly installments for eligible families
+    - Online payment and bank transfer accepted
 
     CONTACT FOR FEE QUERIES:
     Accounts Department: +91-7351408009 (Ext: 101)
-    Fee Helpdesk: fees@apex.ac.in
-    Financial Aid Counselor: +91-7351408009 (Ext: 105)
-    WhatsApp Support: +91-9876543211
-    Office Hours: 9:00 AM to 5:00 PM (Monday to Saturday)
+    Email: fees@apex.ac.in
     """,
     
     "contact_information": """
@@ -912,10 +376,6 @@ APEX_COLLEGE_DATA = {
     Noida, Uttar Pradesh - 201303
     India
 
-    GEOGRAPHIC COORDINATES:
-    Latitude: 28.5355° N
-    Longitude: 77.3910° E
-
     MAIN CONTACT NUMBERS:
     General Enquiry: +91-7351408009
     Admission Helpdesk: +91-7351408009 (Ext: 100)
@@ -923,8 +383,6 @@ APEX_COLLEGE_DATA = {
     Training & Placement: +91-7351408009 (Ext: 234)
     Accounts Department: +91-7351408009 (Ext: 101)
     Hostel Office: +91-7351408009 (Ext: 301)
-    Transport Office: +91-7351408009 (Ext: 401)
-    Library: +91-7351408009 (Ext: 501)
 
     EMAIL CONTACTS:
     General Information: info@apex.ac.in
@@ -933,141 +391,42 @@ APEX_COLLEGE_DATA = {
     Placements: placements@apex.ac.in
     Fee Related: fees@apex.ac.in
     Hostel Enquiries: hostel@apex.ac.in
-    Alumni Affairs: alumni@apex.ac.in
-    International Programs: international@apex.ac.in
 
     DEPARTMENT-WISE CONTACT:
-
-    ENGINEERING DEPARTMENTS:
-    Computer Science Engineering: cse@apex.ac.in
+    Computer Science: cse@apex.ac.in
     AI & Machine Learning: aiml@apex.ac.in
     Data Science: ds@apex.ac.in
-    Cloud Technology & IT Security: ctis@apex.ac.in
+    Cloud Technology: ctis@apex.ac.in
+    MBA Programs: mba@apex.ac.in
 
-    MANAGEMENT DEPARTMENT:
-    MBA Admissions: mba@apex.ac.in
-    BBA Programs: bba@apex.ac.in
-
-    OTHER DEPARTMENTS:
-    BCA Programs: bca@apex.ac.in
-    B.Com Programs: bcom@apex.ac.in
-    Polytechnic: diploma@apex.ac.in
-    Pharmacy: pharmacy@apex.ac.in
-
-    SENIOR ADMINISTRATION:
-    Director General: director@apex.ac.in
-    Academic Director: academic.director@apex.ac.in
-    Admission Director: admission.director@apex.ac.in
-    Dean Student Affairs: dean.students@apex.ac.in
-
-    SOCIAL MEDIA PRESENCE:
-    Official Website: www.apex.ac.in
+    SOCIAL MEDIA:
+    Website: www.apex.ac.in
     Facebook: facebook.com/APEXGroupOfInstitutions
-    Instagram: @apex_college_official
     LinkedIn: linkedin.com/school/apex-group-of-institutions
-    YouTube: APEX Group of Institutions Official
-    Twitter: @APEX_College
-
-    WHATSAPP SUPPORT:
-    Admission Queries: +91-7351408009
-    Fee Related: +91-9876543211
-    Academic Support: +91-9876543212
-    Placement Support: +91-9876543213
-    Hostel Queries: +91-9876543214
+    Instagram: @apex_college_official
 
     OFFICE HOURS:
     Monday to Friday: 9:00 AM to 6:00 PM
     Saturday: 9:00 AM to 4:00 PM
-    Sunday: Closed (Emergency contact available)
+    Sunday: Closed
 
-    PUBLIC HOLIDAYS: As per Government of Uttar Pradesh calendar
+    HOW TO REACH:
+    - Nearest Metro: Noida Sector 137 (3 km)
+    - From Delhi Airport: 45 km (1.5-2 hours)
+    - From New Delhi Station: 35 km
+    - Well-connected by National Highway NH-44
 
     EMERGENCY CONTACTS:
     Medical Emergency: +91-7351408009 (Ext: 911)
     Security Office: +91-7351408009 (Ext: 100)
-    Fire Safety: +91-7351408009 (Ext: 101)
     Campus Maintenance: +91-7351408009 (Ext: 601)
 
-    HOW TO REACH APEX CAMPUS:
-
-    BY AIR:
-    - Nearest Airport: Indira Gandhi International Airport, New Delhi (45 km)
-    - Travel time from airport: 1.5-2 hours by taxi/cab
-    - Airport shuttle service available on request
-
-    BY TRAIN:
-    - Nearest Railway Station: New Delhi Railway Station (35 km)
-    - Hazrat Nizamuddin Railway Station (30 km)
-    - Ghaziabad Railway Station (25 km)
-    - Pre-paid taxi and bus services available
-
-    BY METRO:
-    - Nearest Metro Station: Noida Sector 137 (Blue Line)
-    - Distance from metro station: 3 km
-    - Auto-rickshaw and cab services available
-
-    BY BUS:
-    - Regular bus services from ISBT Kashmere Gate, Delhi
-    - Noida Authority buses connecting major areas
-    - Private bus operators serving the route
-
-    BY CAR:
-    - Well-connected by National Highway NH-44
-    - GPS Navigation: Search "APEX Group of Institutions, Noida"
-    - Ample parking space available on campus
-    - Toll charges applicable on expressway
-
-    NEARBY LANDMARKS:
-    - Amity University (5 km)
-    - Noida Stadium (8 km)
-    - DLF Mall of India (12 km)
-    - Worlds of Wonder (15 km)
-    - India Expo Centre & Mart (10 km)
-
-    ACCOMMODATION FOR VISITORS:
-    - Guest House on campus (prior booking required)
-    - Nearby hotels: Radisson Blu, Country Inn & Suites
-    - Budget accommodations available in Sector 18, Noida
-    - Airport hotels for international visitors
-
-    BANKING FACILITIES NEARBY:
-    - SBI Branch (on campus)
-    - HDFC Bank (2 km)
-    - ICICI Bank (1.5 km)
-    - PNB Branch (3 km)
-    - Multiple ATMs within 1 km radius
-
-    MEDICAL FACILITIES NEARBY:
-    - Apollo Hospital (8 km)
-    - Fortis Hospital (6 km)
-    - Max Super Speciality Hospital (7 km)
-    - Local clinic and pharmacy (1 km)
-
-    POSTAL ADDRESS FOR CORRESPONDENCE:
-    The Registrar
-    APEX Group of Institutions
-    NH-44, Sector-125
-    Noida, Uttar Pradesh - 201303
-    India
-
-    COURIER AND PARCEL DELIVERY:
-    - Campus address same as postal address
-    - Mention department name for quick delivery
-    - Student parcels: Include enrollment number
-    - Office hours for parcel collection: 10 AM to 5 PM
-
-    GRIEVANCE REDRESSAL:
-    Email: grievances@apex.ac.in
-    Phone: +91-7351408009 (Ext: 999)
-    In-person: Administrative Block, Room 201
-    Response time: Within 48 hours for all queries
-
-    For any additional information not covered above, please feel free to contact our 24x7 helpdesk at +91-7351408009. Our dedicated support team is always ready to assist students, parents, and visitors with their queries and concerns.
+    For any queries not covered above, please contact our 24x7 helpdesk at +91-7351408009.
     """
 }
 
-class ComprehensiveAPEXRAG:
-    """Comprehensive RAG system with embedded APEX data"""
+class FixedAPEXRAG:
+    """Fixed RAG system with proper embedding handling"""
     
     def __init__(self, api_key: str):
         """Initialize with embedded data and Google AI"""
@@ -1083,12 +442,12 @@ class ComprehensiveAPEXRAG:
         # Initialize ChromaDB
         self.chroma_client = chromadb.PersistentClient(path="./chroma_db")
         self.collection = self.chroma_client.get_or_create_collection(
-            name="apex_embedded_kb"
+            name="apex_fixed_kb"
         )
         
         # Models
         self.embedding_model = "models/text-embedding-004" 
-        self.generation_model = genai.GenerativeModel("gemini-2.0-flash-lite")
+        self.generation_model = genai.GenerativeModel("gemini-1.5-flash")
         
         # Process embedded data
         self._process_embedded_data()
@@ -1096,7 +455,7 @@ class ComprehensiveAPEXRAG:
     def _test_api(self) -> bool:
         """Test API connection"""
         try:
-            genai.embed_content(
+            test_response = genai.embed_content(
                 model="models/text-embedding-004",
                 content="test",
                 task_type="retrieval_query"
@@ -1106,7 +465,7 @@ class ComprehensiveAPEXRAG:
             st.error(f"API Error: {e}")
             return False
     
-    def _chunk_text(self, text: str, chunk_size: int = 600, overlap: int = 50) -> List[str]:
+    def _chunk_text(self, text: str, chunk_size: int = 500, overlap: int = 50) -> List[str]:
         """Smart text chunking"""
         if len(text) <= chunk_size:
             return [text.strip()]
@@ -1184,9 +543,9 @@ class ComprehensiveAPEXRAG:
         
         st.success(f"📝 Created {len(all_chunks)} chunks from embedded data")
         
-        # Generate embeddings
+        # Generate embeddings with fixed handling
         st.info("🧠 Generating embeddings...")
-        embeddings = self._generate_embeddings(all_chunks)
+        embeddings = self._generate_embeddings_fixed(all_chunks)
         progress_bar.progress(0.8)
         
         # Add to ChromaDB
@@ -1196,39 +555,43 @@ class ComprehensiveAPEXRAG:
         progress_bar.progress(1.0)
         st.success(f"✅ Successfully processed {self.collection.count()} chunks!")
     
-    def _generate_embeddings(self, texts: List[str]) -> List[List[float]]:
-        """Generate embeddings in small batches"""
+    def _generate_embeddings_fixed(self, texts: List[str]) -> List[List[float]]:
+        """Generate embeddings with fixed response handling"""
         embeddings = []
-        batch_size = 3  # Very small batches for stability
         
-        for i in range(0, len(texts), batch_size):
-            batch = texts[i:i + batch_size]
-            
+        # Process texts individually to avoid batch issues
+        for i, text in enumerate(texts):
             try:
+                # Call API for single text
                 response = genai.embed_content(
                     model=self.embedding_model,
-                    content=batch,
+                    content=text,  # Single string, not list
                     task_type="retrieval_document"
                 )
                 
-                # Handle response format
-                if isinstance(response['embedding'], list):
-                    batch_embeddings = [emb['embedding'] for emb in response['embedding']]
+                # Extract embedding - handle different response formats
+                if 'embedding' in response:
+                    # Direct embedding in response
+                    embeddings.append(response['embedding'])
                 else:
-                    batch_embeddings = [response['embedding']['embedding']]
-                
-                embeddings.extend(batch_embeddings)
+                    # Fallback to dummy embedding
+                    st.warning(f"No embedding in response for text {i+1}")
+                    embeddings.append([0.1] * 768)
                 
             except Exception as e:
-                st.warning(f"Embedding error for batch {i//batch_size + 1}: {e}")
-                # Add dummy embeddings
-                embeddings.extend([[0.1] * 768 for _ in batch])
+                st.warning(f"Embedding error for text {i+1}: {e}")
+                # Add dummy embedding
+                embeddings.append([0.1] * 768)
+            
+            # Show progress for long operations
+            if (i + 1) % 10 == 0:
+                st.info(f"Processed {i+1}/{len(texts)} embeddings...")
         
         return embeddings
     
     def _add_to_chromadb(self, chunks, embeddings, metadata, ids):
         """Add data to ChromaDB"""
-        batch_size = 20
+        batch_size = 10  # Very small batches
         
         for i in range(0, len(chunks), batch_size):
             end_idx = min(i + batch_size, len(chunks))
@@ -1243,26 +606,26 @@ class ComprehensiveAPEXRAG:
             except Exception as e:
                 st.warning(f"ChromaDB error for batch {i//batch_size + 1}: {e}")
     
-    def query(self, user_question: str, n_results: int = 4) -> Dict:
-        """Query the RAG system"""
+    def query(self, user_question: str, n_results: int = 3) -> Dict:
+        """Query the RAG system with fixed embedding generation"""
         try:
-            # Generate query embedding
+            # Generate query embedding - single text, not list
             query_response = genai.embed_content(
                 model=self.embedding_model,
-                content=user_question,
+                content=user_question,  # Single string
                 task_type="retrieval_query"
             )
             
-            # Handle response format
-            if isinstance(query_response['embedding'], dict):
-                query_embedding = query_response['embedding']['embedding']
-            else:
+            # Extract query embedding
+            if 'embedding' in query_response:
                 query_embedding = query_response['embedding']
+            else:
+                raise ValueError("No embedding in query response")
             
             # Search ChromaDB
             results = self.collection.query(
                 query_embeddings=[query_embedding],
-                n_results=min(n_results, self.collection.count()),
+                n_results=min(n_results, max(1, self.collection.count())),
                 include=['documents', 'metadatas', 'distances']
             )
             
@@ -1314,7 +677,7 @@ ANSWER:"""
                 generation_config=genai.types.GenerationConfig(
                     temperature=0.2,
                     top_p=0.9,
-                    max_output_tokens=800,
+                    max_output_tokens=600,
                 )
             )
             
@@ -1386,10 +749,6 @@ st.markdown("""
         margin-right: 25%;
         border-left: 4px solid #4caf50;
     }
-    .example-btn {
-        margin: 5px;
-        padding: 10px;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -1404,7 +763,7 @@ def main():
         st.session_state.rag_system = None
     
     # Header
-    st.markdown('<div class="main-header"><h1>🎓 APEX College AI Assistant</h1><p>Comprehensive Knowledge Base with Embedded Data</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header"><h1>🎓 APEX College AI Assistant</h1><p>Fixed Embedding Processing - Ready for Streamlit Cloud</p></div>', unsafe_allow_html=True)
     
     # Sidebar
     with st.sidebar:
@@ -1414,7 +773,7 @@ def main():
         api_key = st.text_input(
             "Google AI API Key",
             type="password",
-            value=os.getenv("GOOGLE_AI_API_KEY", ""),
+            value=os.getenv("GOOGLE_AI_API_KEY", "") or st.secrets.get("GOOGLE_AI_API_KEY", ""),
             help="Get your API key from https://ai.google.dev/"
         )
         
@@ -1427,9 +786,9 @@ def main():
         
         # Initialize RAG system
         if st.session_state.rag_system is None:
-            with st.spinner("🚀 Initializing comprehensive APEX knowledge base..."):
+            with st.spinner("🚀 Initializing APEX knowledge base with fixed embedding..."):
                 try:
-                    st.session_state.rag_system = ComprehensiveAPEXRAG(api_key)
+                    st.session_state.rag_system = FixedAPEXRAG(api_key)
                     st.success("✅ Knowledge Base Ready!")
                 except Exception as e:
                     st.error(f"❌ Failed to initialize: {e}")
@@ -1507,9 +866,7 @@ def main():
         "What is the fee structure for engineering programs?",
         "Are there any scholarships available?",
         "What is the hostel and accommodation like?",
-        "How do I contact APEX college?",
-        "Tell me about the faculty and teaching quality",
-        "What extracurricular activities are available?"
+        "How do I contact APEX college?"
     ]
     
     # Display example questions in columns
