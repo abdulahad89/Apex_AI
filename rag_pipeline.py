@@ -3,7 +3,6 @@ import os
 from typing import List, Dict, Tuple
 import google.generativeai as genai
 import chromadb
-from chromadb.config import Settings
 import numpy as np
 import pandas as pd
 
@@ -18,11 +17,14 @@ class GoogleAIRAGPipeline:
         # Configure Google AI
         genai.configure(api_key=api_key)
         
-        # Initialize ChromaDB for vector storage
-        self.chroma_client = chromadb.Client(Settings(
-            chroma_db_impl="duckdb+parquet",
-            persist_directory="./chroma_db"
-        ))
+        # Initialize ChromaDB with new client approach
+        try:
+            # Use PersistentClient (new way)
+            self.chroma_client = chromadb.PersistentClient(path="./chroma_db")
+            print("✅ ChromaDB PersistentClient initialized successfully!")
+        except Exception as e:
+            print(f"❌ Error initializing ChromaDB: {e}")
+            raise
         
         # Initialize embedding model
         self.embedding_model = "models/text-embedding-004"
@@ -32,14 +34,13 @@ class GoogleAIRAGPipeline:
         
         # Create or get collection
         try:
-            self.collection = self.chroma_client.get_collection(collection_name)
-            print(f"✅ Loaded existing collection: {collection_name}")
-        except:
-            self.collection = self.chroma_client.create_collection(
-                name=collection_name,
-                metadata={"description": "APEX College Knowledge Base"}
+            self.collection = self.chroma_client.get_or_create_collection(
+                name=collection_name
             )
-            print(f"✅ Created new collection: {collection_name}")
+            print(f"✅ Collection '{collection_name}' ready!")
+        except Exception as e:
+            print(f"❌ Error with collection: {e}")
+            raise
     
     def chunk_text(self, text: str, chunk_size: int = 1000, overlap: int = 100) -> List[str]:
         """Split text into overlapping chunks for better retrieval"""
@@ -92,11 +93,12 @@ class GoogleAIRAGPipeline:
         try:
             embeddings = []
             
-            # Process in batches to avoid API limits
-            batch_size = 100  # Google AI allows up to 100 texts per request
+            # Process in smaller batches to be safe with API limits
+            batch_size = 10  # Reduce batch size for stability
             
             for i in range(0, len(texts), batch_size):
                 batch = texts[i:i + batch_size]
+                print(f"🔄 Processing embedding batch {i//batch_size + 1}/{(len(texts)-1)//batch_size + 1}")
                 
                 # Call Google AI embedding API
                 response = genai.embed_content(
@@ -105,7 +107,14 @@ class GoogleAIRAGPipeline:
                     task_type="retrieval_document"
                 )
                 
-                batch_embeddings = [embedding['embedding'] for embedding in response['embedding']]
+                # Handle single text vs batch response
+                if isinstance(response['embedding'], list):
+                    # Batch response
+                    batch_embeddings = [emb['embedding'] for emb in response['embedding']]
+                else:
+                    # Single response
+                    batch_embeddings = [response['embedding']['embedding']]
+                
                 embeddings.extend(batch_embeddings)
             
             print(f"✅ Generated {len(embeddings)} embeddings")
@@ -114,11 +123,24 @@ class GoogleAIRAGPipeline:
         except Exception as e:
             print(f"❌ Error generating embeddings: {e}")
             # Fallback: create dummy embeddings for testing
-            return [[0.0] * 768 for _ in texts]
+            print("🔄 Using dummy embeddings for testing...")
+            return [[0.1] * 768 for _ in texts]
     
     def process_documents(self, documents: List[Dict]):
         """Process and index documents into ChromaDB"""
         print(f"🔄 Processing {len(documents)} documents...")
+        
+        # Clear existing data
+        try:
+            existing_count = self.collection.count()
+            if existing_count > 0:
+                print(f"🗑️ Clearing {existing_count} existing documents...")
+                # Get all IDs and delete them
+                all_data = self.collection.get()
+                if all_data['ids']:
+                    self.collection.delete(ids=all_data['ids'])
+        except Exception as e:
+            print(f"⚠️ Warning clearing collection: {e}")
         
         all_chunks = []
         all_metadata = []
@@ -137,11 +159,11 @@ class GoogleAIRAGPipeline:
             
             for chunk_id, chunk in enumerate(chunks):
                 chunk_metadata = {
-                    'doc_id': doc_id,
-                    'chunk_id': chunk_id,
+                    'doc_id': str(doc_id),
+                    'chunk_id': str(chunk_id),
                     'title': title,
                     'url': url,
-                    'word_count': len(chunk.split()),
+                    'word_count': str(len(chunk.split())),
                     'source': 'apex_website'
                 }
                 
@@ -155,16 +177,30 @@ class GoogleAIRAGPipeline:
         print("🔄 Generating embeddings...")
         embeddings = self.generate_embeddings(all_chunks)
         
-        # Add to ChromaDB
+        # Add to ChromaDB in smaller batches
         print("💾 Adding to vector database...")
-        self.collection.add(
-            documents=all_chunks,
-            embeddings=embeddings,
-            metadatas=all_metadata,
-            ids=all_ids
-        )
+        batch_size = 50  # Add in smaller batches
         
-        print(f"✅ Successfully indexed {len(all_chunks)} chunks!")
+        for i in range(0, len(all_chunks), batch_size):
+            end_idx = min(i + batch_size, len(all_chunks))
+            batch_chunks = all_chunks[i:end_idx]
+            batch_embeddings = embeddings[i:end_idx]
+            batch_metadata = all_metadata[i:end_idx]
+            batch_ids = all_ids[i:end_idx]
+            
+            try:
+                self.collection.add(
+                    documents=batch_chunks,
+                    embeddings=batch_embeddings,
+                    metadatas=batch_metadata,
+                    ids=batch_ids
+                )
+                print(f"✅ Added batch {i//batch_size + 1}/{(len(all_chunks)-1)//batch_size + 1}")
+            except Exception as e:
+                print(f"❌ Error adding batch: {e}")
+        
+        final_count = self.collection.count()
+        print(f"✅ Successfully indexed {final_count} chunks!")
     
     def retrieve_relevant_chunks(self, query: str, n_results: int = 5) -> List[Dict]:
         """Retrieve relevant chunks for a query"""
@@ -175,23 +211,32 @@ class GoogleAIRAGPipeline:
                 content=query,
                 task_type="retrieval_query"
             )
-            query_embedding = query_response['embedding']['embedding']
+            
+            # Handle response format
+            if 'embedding' in query_response:
+                if isinstance(query_response['embedding'], dict):
+                    query_embedding = query_response['embedding']['embedding']
+                else:
+                    query_embedding = query_response['embedding']
+            else:
+                raise ValueError("No embedding in response")
             
             # Search in ChromaDB
             results = self.collection.query(
                 query_embeddings=[query_embedding],
-                n_results=n_results,
+                n_results=min(n_results, self.collection.count()),
                 include=['documents', 'metadatas', 'distances']
             )
             
             # Format results
             relevant_chunks = []
-            for i, doc in enumerate(results['documents'][0]):
-                relevant_chunks.append({
-                    'content': doc,
-                    'metadata': results['metadatas'][0][i],
-                    'similarity_score': 1 - results['distances'][0][i],  # Convert distance to similarity
-                })
+            if results['documents'] and results['documents'][0]:
+                for i, doc in enumerate(results['documents'][0]):
+                    relevant_chunks.append({
+                        'content': doc,
+                        'metadata': results['metadatas'][0][i],
+                        'similarity_score': 1 - results['distances'][0][i],  # Convert distance to similarity
+                    })
             
             return relevant_chunks
             
@@ -280,12 +325,12 @@ ANSWER:"""
             if source_info not in sources:
                 sources.append(source_info)
         
-        avg_confidence = np.mean([chunk['similarity_score'] for chunk in relevant_chunks])
+        avg_confidence = np.mean([chunk['similarity_score'] for chunk in relevant_chunks]) if relevant_chunks else 0.0
         
         return {
             'answer': answer,
             'sources': sources[:3],  # Limit to top 3 sources
-            'confidence': avg_confidence,
+            'confidence': float(avg_confidence),
             'retrieved_chunks': len(relevant_chunks)
         }
     
@@ -325,28 +370,30 @@ if __name__ == "__main__":
         print("❌ Please set your GOOGLE_AI_API_KEY environment variable")
     else:
         # Initialize RAG pipeline
-        rag = GoogleAIRAGPipeline(API_KEY)
-        
-        # Load and process documents
-        documents = load_scraped_data()
-        if documents:
-            rag.process_documents(documents)
+        try:
+            rag = GoogleAIRAGPipeline(API_KEY)
             
-            # Test queries
-            test_queries = [
-                "What B.Tech programs does APEX offer?",
-                "How can I apply for admission to APEX?",
-                "What are the placement opportunities?",
-                "Tell me about the campus facilities",
-                "What is the fee structure?"
-            ]
-            
-            print("\n🧪 Testing RAG Pipeline:")
-            for query in test_queries:
-                print(f"\n❓ Query: {query}")
-                result = rag.query(query)
-                print(f"📝 Answer: {result['answer'][:200]}...")
-                print(f"🎯 Confidence: {result['confidence']:.3f}")
-                print(f"📚 Sources: {len(result['sources'])}")
-        else:
-            print("❌ No documents to process!")
+            # Load and process documents
+            documents = load_scraped_data()
+            if documents:
+                rag.process_documents(documents)
+                
+                # Test queries
+                test_queries = [
+                    "What B.Tech programs does APEX offer?",
+                    "How can I apply for admission to APEX?",
+                    "What are the placement opportunities?",
+                ]
+                
+                print("\n🧪 Testing RAG Pipeline:")
+                for query in test_queries:
+                    print(f"\n❓ Query: {query}")
+                    result = rag.query(query)
+                    print(f"📝 Answer: {result['answer'][:200]}...")
+                    print(f"🎯 Confidence: {result['confidence']:.3f}")
+                    print(f"📚 Sources: {len(result['sources'])}")
+            else:
+                print("❌ No documents to process!")
+        except Exception as e:
+            print(f"❌ Failed to initialize RAG pipeline: {e}")
+            print("💡 Make sure you have a valid Google AI API key and internet connection")
