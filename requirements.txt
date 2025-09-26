@@ -1,10 +1,5 @@
 streamlit
-requests
-beautifulsoup4
 google-generativeai
 chromadb>=0.5.0
-pandas
 numpy
 python-dotenv
-urllib3
-lxml
