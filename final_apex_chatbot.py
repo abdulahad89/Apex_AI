@@ -447,7 +447,7 @@ class FixedAPEXRAG:
         
         # Models
         self.embedding_model = "models/text-embedding-004" 
-        self.generation_model = genai.GenerativeModel("gemini-1.5-flash")
+        self.generation_model = genai.GenerativeModel("gemini-2.0-flash-lite")
         
         # Process embedded data
         self._process_embedded_data()
